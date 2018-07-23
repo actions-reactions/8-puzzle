@@ -14,12 +14,12 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    final static private String MEDIUM = "135702468";
+    final static private String INIT_STATE = "135702468";
     final static private String GOAL_STATE = "123456780";
 
     public static void main(String[] args) {
         // TODO code application logic here
-        String rootState = MEDIUM;
+        String rootState = INIT_STATE;
         long startTime = System.currentTimeMillis();
 
         SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
