@@ -18,6 +18,9 @@ public class Main {
      */
     final static private String INIT_STATE = "135702468";
     final static private String GOAL_STATE = "123456780";
+    static String state;
+    static Heuristic heuristic;
+
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -30,8 +33,8 @@ public class Main {
             args[1] = "" + n;
         }
         
-
-        Heuristic heuristic = Heuristic.H_ONE;
+        state = args[1];
+        heuristic = Heuristic.H_ONE;
         if(args[0].equals("1")){
             heuristic = Heuristic.H_ONE;
         }
@@ -44,6 +47,7 @@ public class Main {
         else{
             heuristic = Heuristic.H_TWO;
         }
+        
 
         int i = 0;
         for (String filename : args) {
@@ -58,13 +62,15 @@ public class Main {
             System.out.println("\n\n\n");
 
             long startTime = System.currentTimeMillis();
-
+            NodeUtil.startTime = startTime;
+            
             SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
             search.aStar(heuristic);
 
             long finishTime = System.currentTimeMillis();
             long totalTime = finishTime - startTime;
             System.out.println("Time  :" + totalTime);
+            
         }
     }
 

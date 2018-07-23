@@ -5,16 +5,27 @@
  */
 package pro.smjx.puzzle8;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ProttoyX
  */
 public class NodeUtil {
+    
+    static long startTime;
 
     public static List<String> getSuccessors(String state) {
         List<String> successors = new ArrayList<String>();
@@ -124,7 +135,58 @@ public class NodeUtil {
         System.out.println("** Total cost for this solution: " + totalCost);
         System.out.println("** Number of Nodes poped out of the queue: " + time);
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        
+        PrintWriter pw;
+        try {
+            StringBuilder sb = new StringBuilder();
 
+            try(BufferedReader br = new BufferedReader(new FileReader("test.csv"))) {
+                String line = br.readLine();
+                while (line != null) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                    line = br.readLine();
+                }
+                String everything = sb.toString();
+            } catch (IOException ex) {
+                sb.append("State");
+                sb.append(',');
+                sb.append("Huristic");
+                sb.append(',');
+                sb.append("No. of State");
+                sb.append(',');
+                sb.append("visited states");
+                sb.append(',');
+                sb.append("Total cost");
+                sb.append(',');
+                sb.append("Number of Nodes poped out of the queue");
+                sb.append(',');
+                sb.append("Total Time");
+                sb.append('\n');
+            }
+            System.out.println(Paths.get("test.csv").toAbsolutePath());
+            pw = new PrintWriter(new File("test.csv"));
+
+            sb.append(Main.state);
+            sb.append(',');
+            sb.append(Main.heuristic);
+            sb.append(',');
+            sb.append(solutionStack.size() - 1);
+            sb.append(',');
+            sb.append(visitedNodes.size());
+            sb.append(',');
+            sb.append(totalCost);
+            sb.append(',');
+            sb.append(time);
+            sb.append(',');
+            sb.append(System.currentTimeMillis() - startTime);
+            sb.append('\n');
+            
+            pw.write(sb.toString());
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(NodeUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //*******************************************************************************************
