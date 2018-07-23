@@ -5,6 +5,8 @@
  */
 package pro.smjx.puzzle8;
 
+import java.util.Random;
+
 /**
  *
  * @author ProttoyX
@@ -19,15 +21,51 @@ public class Main {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        String rootState = INIT_STATE;
-        long startTime = System.currentTimeMillis();
+        if(args.length == 0){
+            Random rand = new Random();
+            int n = rand.nextInt(29) + 1;
+            
+            args = new String[2];
+            args[0] = "1";
+            args[1] = "" + n;
+        }
+        
 
-        SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
-        search.aStar(Heuristic.H_ONE);
+        Heuristic heuristic = Heuristic.H_ONE;
+        if(args[0].equals("1")){
+            heuristic = Heuristic.H_ONE;
+        }
+        else if(args[0].equals("2")){
+            heuristic = Heuristic.H_TWO;
+        }
+        else if(args[0].equals("3")){
+            heuristic = Heuristic.H_THREE;
+        }
+        else{
+            heuristic = Heuristic.H_TWO;
+        }
 
-        long finishTime = System.currentTimeMillis();
-        long totalTime = finishTime - startTime;
-        System.out.println("Time  :" + totalTime);
+        int i = 0;
+        for (String filename : args) {
+            if(i++ == 0)
+                continue;
+            
+            String ffn = "puzzle3x3/puzzle3x3-" + filename +".txt";
+            String rootState = State.FromFile(ffn);
+            System.out.println("\n\n\n");
+            System.out.println(ffn);
+            System.out.println(heuristic);
+            System.out.println("\n\n\n");
+
+            long startTime = System.currentTimeMillis();
+
+            SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
+            search.aStar(heuristic);
+
+            long finishTime = System.currentTimeMillis();
+            long totalTime = finishTime - startTime;
+            System.out.println("Time  :" + totalTime);
+        }
     }
 
 }
