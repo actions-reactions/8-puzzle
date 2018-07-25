@@ -51,7 +51,7 @@ public class Main {
             heuristic = Heuristic.H_TWO;
         }
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 500; i++) {
             try {
 
                 state = "" + i;
