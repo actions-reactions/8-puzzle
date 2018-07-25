@@ -21,40 +21,40 @@ public class Main {
     static String state;
     static Heuristic heuristic;
 
-
     public static void main(String[] args) {
         // TODO code application logic here
-        if(args.length == 0){
-            Random rand = new Random();
-            int n = rand.nextInt(29) + 1;
-            
-            args = new String[2];
-            args[0] = "1";
-            args[1] = "" + n;
-        }
-        
-        state = args[1];
-        heuristic = Heuristic.H_ONE;
-        if(args[0].equals("1")){
-            heuristic = Heuristic.H_ONE;
-        }
-        else if(args[0].equals("2")){
-            heuristic = Heuristic.H_TWO;
-        }
-        else if(args[0].equals("3")){
-            heuristic = Heuristic.H_THREE;
-        }
-        else{
-            heuristic = Heuristic.H_TWO;
-        }
-        
+        if (args.length == 0) {
+//            Random rand = new Random();
+//            int n = rand.nextInt(29) + 1;
+//
+//            args = new String[2];
+//            args[0] = "1";
+//            args[1] = "" + n;
 
-        int i = 0;
-        for (String filename : args) {
-            if(i++ == 0)
-                continue;
-            
-            String ffn = "puzzle3x3/puzzle3x3-" + filename +".txt";
+            System.out.println("");
+            System.out.println("8 Puzzle require at least 2 arguments.");
+            System.out.println("First argument is for Heuristic type in integer (1-3) and then initial board state(0-30).");
+            System.out.println("For example: java -jar 8-puzzle.jar 1 15");
+            System.out.println("");
+
+            return;
+        }
+
+        heuristic = Heuristic.H_ONE;
+        if (args[0].equals("1")) {
+            heuristic = Heuristic.H_ONE;
+        } else if (args[0].equals("2")) {
+            heuristic = Heuristic.H_TWO;
+        } else if (args[0].equals("3")) {
+            heuristic = Heuristic.H_THREE;
+        } else {
+            heuristic = Heuristic.H_TWO;
+        }
+
+        for (int i = 0; i < 100; i++) {
+            state = "" + i;
+
+            String ffn = "puzzle3x3/puzzle3x3-" + i + ".txt";
             String rootState = State.FromFile(ffn);
             System.out.println("\n\n\n");
             System.out.println(ffn);
@@ -63,14 +63,14 @@ public class Main {
 
             long startTime = System.currentTimeMillis();
             NodeUtil.startTime = startTime;
-            
+
             SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
             search.aStar(heuristic);
 
             long finishTime = System.currentTimeMillis();
             long totalTime = finishTime - startTime;
             System.out.println("Time  :" + totalTime);
-            
+
         }
     }
 

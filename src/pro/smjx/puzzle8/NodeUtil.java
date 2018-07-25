@@ -140,16 +140,15 @@ public class NodeUtil {
         try {
             StringBuilder sb = new StringBuilder();
 
-            try(BufferedReader br = new BufferedReader(new FileReader("test.csv"))) {
+            try(BufferedReader br = new BufferedReader(new FileReader("test-" + Main.heuristic + ".csv"))) {
                 String line = br.readLine();
                 while (line != null) {
                     sb.append(line);
                     sb.append(System.lineSeparator());
                     line = br.readLine();
                 }
-                String everything = sb.toString();
             } catch (IOException ex) {
-                sb.append("State");
+                sb.append("Initial State");
                 sb.append(',');
                 sb.append("Huristic");
                 sb.append(',');
