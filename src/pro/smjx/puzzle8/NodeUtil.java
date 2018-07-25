@@ -150,8 +150,6 @@ public class NodeUtil {
             } catch (IOException ex) {
                 sb.append("Initial State");
                 sb.append(',');
-                sb.append("Huristic");
-                sb.append(',');
                 sb.append("No. of State");
                 sb.append(',');
                 sb.append("visited states");
@@ -163,12 +161,10 @@ public class NodeUtil {
                 sb.append("Total Time");
                 sb.append('\n');
             }
-            System.out.println(Paths.get("test.csv").toAbsolutePath());
-            pw = new PrintWriter(new File("test.csv"));
+            System.out.println(Paths.get("test-" + Main.heuristic + ".csv").toAbsolutePath());
+            pw = new PrintWriter(new File("test-" + Main.heuristic + ".csv"));
 
             sb.append(Main.state);
-            sb.append(',');
-            sb.append(Main.heuristic);
             sb.append(',');
             sb.append(solutionStack.size() - 1);
             sb.append(',');
@@ -193,7 +189,6 @@ public class NodeUtil {
      *
      * @return returns the transition between two states.
      *
-     * @author Himan Abdollahpouri
      *
      */
     public static MovementType findTransition(String source, String destination) {

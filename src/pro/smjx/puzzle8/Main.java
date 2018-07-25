@@ -27,17 +27,17 @@ public class Main {
 //            Random rand = new Random();
 //            int n = rand.nextInt(29) + 1;
 //
-//            args = new String[2];
-//            args[0] = "1";
+            args = new String[2];
+            args[0] = "1";
 //            args[1] = "" + n;
 
             System.out.println("");
-            System.out.println("8 Puzzle require at least 2 arguments.");
-            System.out.println("First argument is for Heuristic type in integer (1-3) and then initial board state(0-30).");
-            System.out.println("For example: java -jar 8-puzzle.jar 1 15");
+            System.out.println("8 Puzzle require at least 1 arguments.");
+            System.out.println("First argument is for Heuristic type in integer (1-3).");
+            System.out.println("For example: java -jar 8-puzzle.jar 1");
             System.out.println("");
 
-            return;
+            //return;
         }
 
         heuristic = Heuristic.H_ONE;
@@ -52,25 +52,30 @@ public class Main {
         }
 
         for (int i = 0; i < 100; i++) {
-            state = "" + i;
+            try {
 
-            String ffn = "puzzle3x3/puzzle3x3-" + i + ".txt";
-            String rootState = State.FromFile(ffn);
-            System.out.println("\n\n\n");
-            System.out.println(ffn);
-            System.out.println(heuristic);
-            System.out.println("\n\n\n");
+                state = "" + i;
 
-            long startTime = System.currentTimeMillis();
-            NodeUtil.startTime = startTime;
+                String ffn = "puzzle3x3/puzzle3x3-" + i + ".txt";
+                String rootState = State.FromFile(ffn);
+                System.out.println("\n\n\n");
+                System.out.println(ffn);
+                System.out.println(heuristic);
+                System.out.println("\n\n\n");
 
-            SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
-            search.aStar(heuristic);
+                long startTime = System.currentTimeMillis();
+                NodeUtil.startTime = startTime;
 
-            long finishTime = System.currentTimeMillis();
-            long totalTime = finishTime - startTime;
-            System.out.println("Time  :" + totalTime);
+                SearchTree search = new SearchTree(new Node(rootState), GOAL_STATE);
+                search.aStar(heuristic);
 
+                long finishTime = System.currentTimeMillis();
+                long totalTime = finishTime - startTime;
+                System.out.println("Time  :" + totalTime);
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
