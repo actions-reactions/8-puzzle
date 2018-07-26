@@ -16,7 +16,6 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    final static private String INIT_STATE = "135702468";
     final static private String GOAL_STATE = "123456780";
     static String state;
     static Heuristic heuristic;
