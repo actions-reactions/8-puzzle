@@ -96,7 +96,6 @@ public class NodeUtil {
      * states to the goal state.
      *
      *
-     *
      */
     public static void printSolution(Node goalNode, Set<String> visitedNodes, Node root, int time) {
 
