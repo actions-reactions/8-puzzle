@@ -1,10 +1,9 @@
-To run: open Command Prompt/PowerShell/Terminal on the current directory by pressing SHIFT+RIGHT button on Windows or by openning Terminal on the current directory and by typing:
+## To run:
 
-java -jar 8-puzzle.jar 1
-or,
-java -jar 8-puzzle.jar 2
-or,
-java -jar 8-puzzle.jar 3
+Open Command Prompt/PowerShell/Terminal on the `dist/` directory by pressing `SHIFT`+`RIGHT` button on Windows or by openning Terminal on Linux and then type any of the following and hit `ENTER` :
 
+* `java -jar 8-puzzle.jar 1` for Hamming
 
-To be noted that the command line argument 1, 2 and 3 represents Hamming, Manhattan and Modified Manhattan heuristics respectively.
+* `java -jar 8-puzzle.jar 2` for Manhattan
+
+* `java -jar 8-puzzle.jar 3` for Modified Manhattan
