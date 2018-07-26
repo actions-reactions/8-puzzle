@@ -1,4 +1,6 @@
-To run: open Command Prompt/PowerShell/Terminal on the `dist/` directory by pressing `SHIFT`+`RIGHT` button on Windows or by openning Terminal on the current directory and by typing:
+**To run:
+
+Open Command Prompt/PowerShell/Terminal on the `dist/` directory by pressing `SHIFT`+`RIGHT` button on Windows or by openning Terminal on the current directory and by typing:
 
 `java -jar 8-puzzle.jar 1` for Hamming
 
