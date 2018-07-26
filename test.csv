@@ -1,8 +1,0 @@
-State,Huristic,No. of State,visited states,Total cost,Number of Nodes poped out of the queue,Total Time
-27,H_ONE,27,154082,113,135085,1253
-2,H_ONE,2,14,11,6,12
-17,H_ONE,17,16774,73,10992,233
-5,H_ONE,5,43,24,25,14
-26,H_ONE,26,124397,120,101065,1220
-12,H_ONE,12,1017,53,627,184
-21,H_ONE,21,50118,100,35240,417

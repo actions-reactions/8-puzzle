@@ -95,7 +95,7 @@ public class NodeUtil {
      * prints the transitions along with the states starting from the initial
      * states to the goal state.
      *
-     * @author Himan Abdollahpouri
+     * 
      *
      */
     public static void printSolution(Node goalNode, Set<String> visitedNodes, Node root, int time) {
@@ -152,7 +152,7 @@ public class NodeUtil {
                 sb.append(',');
                 sb.append("No. of State");
                 sb.append(',');
-                sb.append("visited states");
+                sb.append("Visited states");
                 sb.append(',');
                 sb.append("Total cost");
                 sb.append(',');
